@@ -1,17 +1,16 @@
-
 const express = require('express');
 const cors = require('cors');
 const { MongoClient, ObjectId, ServerApiVersion } = require('mongodb');
 require('dotenv').config();
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
 
 // MongoDB connection
-const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_Password}@cluster0.l7zck31.mongodb.net/?appName=Cluster0`;
+const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_Password}@cluster0.wcellxl.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -262,7 +261,6 @@ run().catch(console.dir);
 
 // Test routes
 app.get('/', (req, res) => res.send('Server is running fine..'));
-
 
 // Start server
 app.listen(port, () => {
